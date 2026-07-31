@@ -1,3 +1,12 @@
-# https://www.robotstxt.org/robotstxt.html
+# Allow all search engines to crawl the website
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /node_modules/
+Disallow: /*.json$
+
+# Sitemap location
+Sitemap: https://yourportfolio.com/sitemap.xml
+
+# Crawl-delay for search engine bots (in seconds)
+Crawl-delay: 1
+
