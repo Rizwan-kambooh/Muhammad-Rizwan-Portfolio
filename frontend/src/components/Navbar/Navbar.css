@@ -1,0 +1,124 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+
+  background: rgba(15, 15, 15, 0.4);
+  backdrop-filter: blur(12px);
+
+  border-bottom: 1px solid rgba(0, 255, 204, 0.15);
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: auto;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px 25px;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: white;
+}
+
+.logo span {
+  color: #00ffcc;
+  text-shadow: 0 0 10px #00ffcc;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: #bbb;
+  text-decoration: none;
+  font-size: 0.95rem;
+
+  position: relative;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #00ffcc;
+  transform: translateY(-2px);
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #00ffcc;
+  transition: 0.3s;
+  box-shadow: 0 0 10px #00ffcc;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+/* CV BUTTON (NAVBAR CTA) */
+.cv-nav-btn {
+  padding: 8px 18px;
+  border-radius: 8px;
+  background: #00ffcc;
+  color: black;
+  font-size: 0.85rem;
+  text-decoration: none;
+  font-weight: 500;
+
+  transition: 0.3s ease;
+  white-space: nowrap;
+}
+
+/* HOVER EFFECT */
+.cv-nav-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 0 15px #00ffcc;
+}
+
+/* FIX SPACING ISSUE */
+.nav-container {
+  max-width: 1200px;
+  margin: auto;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 14px 25px;
+  gap: 20px; /* IMPORTANT */
+}
+
+/* RESPONSIVE FIX */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .cv-nav-btn {
+    margin-top: 5px;
+  }
+}
