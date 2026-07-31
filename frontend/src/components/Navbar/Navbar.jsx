@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
 import profileImage from "../../assets/profile.jpeg";
@@ -17,14 +18,32 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    document.body.classList.toggle("menu-open", isMenuOpen);
-    return () => document.body.classList.remove("menu-open");
+    const body = document.body;
+    const html = document.documentElement;
+
+    if (isMenuOpen) {
+      body.classList.add("menu-open");
+      body.style.overflow = "hidden";
+      body.style.touchAction = "none";
+      html.style.overflow = "hidden";
+
+      return () => {
+        body.classList.remove("menu-open");
+        body.style.overflow = "";
+        body.style.touchAction = "";
+        html.style.overflow = "";
+      };
+    }
+
+    body.classList.remove("menu-open");
+    body.style.overflow = "";
+    body.style.touchAction = "";
+    html.style.overflow = "";
   }, [isMenuOpen]);
 
   const closeMenu = () => setIsMenuOpen(false);
 
-  return (
-    <>
+  const navigationHeader = (
       <header className="navbar">
         <div className="nav-container">
           <div className="logo">
@@ -52,6 +71,11 @@ const Navbar = () => {
           </button>
         </div>
       </header>
+  );
+
+  return (
+    <>
+      {createPortal(navigationHeader, document.body)}
 
       <AnimatePresence>
         {isMenuOpen && (
