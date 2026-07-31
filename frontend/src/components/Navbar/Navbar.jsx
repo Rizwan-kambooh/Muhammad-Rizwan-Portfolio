@@ -46,8 +46,11 @@ const Navbar = () => {
   const navigationHeader = (
       <header className="navbar">
         <div className="nav-container">
-          <div className="logo">
-            Muhammad Rizwan<span>.</span>
+          <div className="navbar-brand">
+            <img src={profileImage} alt="Muhammad Rizwan" className="navbar-profile-img" />
+            <div className="logo">
+              Muhammad Rizwan<span>.</span>
+            </div>
           </div>
           <ul className="nav-links">
             <li><a href="#home">Home</a></li>
@@ -101,7 +104,7 @@ const Navbar = () => {
               <div className="drawer-header">
                 <div className="drawer-profile">
                   <img src={profileImage} alt="Muhammad Rizwan" />
-                  <span>Muhammad Rizwan</span>
+                  <span>Muhammad Rizwan<span className="logo-dot">.</span></span>
                 </div>
                 <button className="drawer-close" type="button" onClick={closeMenu} aria-label="Close navigation menu">
                   <FiX />
