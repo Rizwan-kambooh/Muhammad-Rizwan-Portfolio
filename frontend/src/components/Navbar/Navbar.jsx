@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
 import profileImage from "../../assets/profile.jpeg";
 import "./Navbar.css";
@@ -25,12 +25,7 @@ const Navbar = () => {
 
   return (
     <>
-      <motion.header
-        className="navbar"
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6 }}
-      >
+      <header className="navbar">
         <div className="nav-container">
           <div className="logo">
             Muhammad Rizwan<span>.</span>
@@ -56,7 +51,7 @@ const Navbar = () => {
             <FiMenu />
           </button>
         </div>
-      </motion.header>
+      </header>
 
       <AnimatePresence>
         {isMenuOpen && (
