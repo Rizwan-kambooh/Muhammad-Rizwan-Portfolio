@@ -6,9 +6,26 @@ frontend/node_modules/
 
 # =========================
 # Environment Variables
+# Ignore real environment files everywhere, while keeping safe templates tracked.
 # =========================
-backend/.env
-frontend/.env
+.env
+.env.*
+.envrc
+!.env.example
+!.env.*.example
+
+# Private keys and credential files
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+id_rsa
+id_ed25519
+.npmrc
+credentials*.json
+service-account*.json
+firebase-adminsdk*.json
 
 # =========================
 # Build Files
@@ -39,15 +56,6 @@ yarn-error.log*
 # IDEs
 # =========================
 .idea/
-
-# =========================
-# Environment Files
-# =========================
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 
 # =========================
 # Cache
