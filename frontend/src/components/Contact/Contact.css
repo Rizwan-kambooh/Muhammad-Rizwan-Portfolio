@@ -227,6 +227,20 @@
   box-shadow: 0 0 20px #00ffcc;
 }
 
+.contact-status {
+  margin: 0;
+  font-size: 0.95rem;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: rgba(0,255,204,0.12);
+  color: #9bfce0;
+}
+
+.contact-status.error {
+  background: rgba(255, 85, 85, 0.16);
+  color: #ffb0b0;
+}
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
   .contact-container {
