@@ -2,7 +2,8 @@ import { motion } from "framer-motion";
 import "./Contact.css";
 import { useState } from "react";
 import { FaEnvelope, FaWhatsapp, FaMapMarkerAlt } from "react-icons/fa";
-import { API_BASE_URL } from "../../config/api";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { db } from "../../config/firebase";
 
 const Contact = () => {
   const [form, setForm] = useState({
@@ -22,20 +23,16 @@ const Contact = () => {
     setStatus({ type: "loading", message: "Sending your message..." });
 
     try {
-      const res = await fetch(`${API_BASE_URL}/api/contact`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+      await addDoc(collection(db, "contactMessages"), {
+        name: form.name.trim(),
+        email: form.email.trim(),
+        phone: form.phone.trim(),
+        message: form.message.trim(),
+        createdAt: serverTimestamp(),
       });
 
-      const data = await res.json();
-
-      if (res.ok && data.success) {
-        setForm({ name: "", email: "", phone: "", message: "" });
-        setStatus({ type: "success", message: data.message });
-      } else {
-        setStatus({ type: "error", message: data.message || "Unable to send your message." });
-      }
+      setForm({ name: "", email: "", phone: "", message: "" });
+      setStatus({ type: "success", message: "Thanks! Your message has been sent successfully." });
     } catch (error) {
       setStatus({ type: "error", message: "Unable to send your message right now." });
     }

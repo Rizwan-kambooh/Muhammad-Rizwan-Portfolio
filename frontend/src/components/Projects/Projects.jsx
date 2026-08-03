@@ -1,6 +1,9 @@
 import "./Projects.css";
 import { motion } from "framer-motion";
 import ProjectCard from "./ProjectCard";
+import { useEffect, useState } from "react";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { db } from "../../config/firebase";
 
 // IMPORT IMAGES
 import p11 from "../../assets/projects/project11.jpeg";
@@ -11,7 +14,7 @@ import p21 from "../../assets/projects/project21.jpeg";
 import p22 from "../../assets/projects/project22.jpeg";
 import p23 from "../../assets/projects/project23.jpeg";
 
-const projectsData = [
+const fallbackProjects = [
   {
     title: "Oram360 App",
     images: [p11, p12, p13],
@@ -31,6 +34,23 @@ const projectsData = [
 ];
 
 const Projects = () => {
+  const [projects, setProjects] = useState(fallbackProjects);
+
+  useEffect(() => {
+    const projectsQuery = query(collection(db, "projects"), orderBy("order", "asc"));
+    const unsubscribe = onSnapshot(
+      projectsQuery,
+      (snapshot) => {
+        if (!snapshot.empty) {
+          setProjects(snapshot.docs.map((document) => ({ id: document.id, ...document.data() })));
+        }
+      },
+      () => setProjects(fallbackProjects)
+    );
+
+    return unsubscribe;
+  }, []);
+
   return (
     <section id="projects" className="projects">
 
@@ -49,8 +69,8 @@ const Projects = () => {
 
         {/* GRID */}
         <div className="projects-grid">
-          {projectsData.map((project, index) => (
-            <ProjectCard key={index} project={project} index={index} />
+          {projects.map((project, index) => (
+            <ProjectCard key={project.id || project.title} project={project} index={index} />
           ))}
         </div>
 

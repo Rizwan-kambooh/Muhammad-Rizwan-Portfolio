@@ -1,0 +1,797 @@
+.admin-shell {
+  min-height: 100vh;
+  padding: 40px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #eef2f2;
+  background: radial-gradient(circle at 20% 15%, rgba(0, 255, 204, 0.12), transparent 24%),
+    radial-gradient(circle at 80% 90%, rgba(0, 255, 204, 0.08), transparent 18%),
+    #060909;
+}
+
+.admin-login-card,
+.admin-dashboard {
+  width: min(580px, 100%);
+  margin: 0 auto;
+}
+
+.admin-login-card,
+.admin-login-card *,
+.project-form,
+.project-form * {
+  box-sizing: border-box;
+}
+
+.admin-login-card {
+  position: relative;
+  padding: 42px 38px;
+  border-radius: 28px;
+  border: 1px solid rgba(0, 255, 204, 0.18);
+  background: linear-gradient(180deg, rgba(12, 16, 16, 0.98), rgba(6, 9, 9, 0.88));
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+.admin-login-card::before {
+  content: "";
+  position: absolute;
+  left: -20%;
+  top: -10%;
+  width: 220%;
+  height: 60%;
+  background: radial-gradient(circle at center, rgba(0, 255, 204, 0.18), transparent 55%);
+  pointer-events: none;
+}
+
+.admin-tag {
+  color: #74f5d7;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.74rem;
+}
+
+.admin-login-card h1,
+.admin-header h1 {
+  margin: 12px 0 8px;
+  font-size: clamp(2rem, 2.4vw, 2.8rem);
+  line-height: 1.02;
+}
+
+.admin-login-card p,
+.admin-header p,
+.admin-project p,
+.messages-panel > p {
+  color: #a8b8b6;
+  margin: 0;
+  line-height: 1.7;
+}
+
+.admin-login-card label,
+.project-form label {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+  font-weight: 600;
+  color: #e0f7ef;
+}
+
+.admin-login-card input,
+.project-form input,
+.project-form textarea {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid rgba(0, 255, 204, 0.24);
+  border-radius: 14px;
+  background: rgba(10, 15, 15, 0.92);
+  color: #f7fbfb;
+  font: inherit;
+  transition: border-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
+}
+
+.admin-login-card input:focus,
+.project-form input:focus,
+.project-form textarea:focus {
+  border-color: #00ffcc;
+  box-shadow: 0 0 0 5px rgba(0, 255, 204, 0.1);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.project-form textarea {
+  min-height: 108px;
+  resize: vertical;
+}
+
+.password-label {
+  min-width: 0;
+}
+
+.admin-login-card .remember-login {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 14px;
+  color: #a9c2bc;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.admin-login-card .remember-login input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  padding: 0;
+  accent-color: #00e4bc;
+  cursor: pointer;
+}
+
+.password-field {
+  position: relative;
+  min-width: 0;
+}
+
+.password-field input {
+  padding-right: 56px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border: none;
+  background: rgba(0, 255, 204, 0.12);
+  color: #82ffe5;
+  border-radius: 999px;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  display: grid;
+  place-items: center;
+}
+
+.toggle-password img {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.toggle-password:hover {
+  background: rgba(0, 255, 204, 0.2);
+  transform: translateY(-50%) scale(1.05);
+  box-shadow: 0 0 0 4px rgba(0, 255, 204, 0.1);
+}
+
+.admin-login-card button,
+.project-form button,
+.admin-tabs button,
+.admin-header button,
+.admin-list button {
+  margin-top: 20px;
+  padding: 14px 18px;
+  border: 0;
+  border-radius: 14px;
+  background: #00e4bc;
+  color: #07110f;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.18s ease, filter 0.18s ease;
+}
+
+/* Keep the visibility control inside the password field, independent of form buttons. */
+.admin-login-card .toggle-password {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #82ffe5;
+  transform: translateY(-50%);
+  box-shadow: none;
+}
+
+.admin-login-card .toggle-password:hover,
+.admin-login-card .toggle-password:focus-visible {
+  background: transparent;
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: none;
+  filter: none;
+  outline: none;
+}
+
+.admin-login-card .toggle-password:focus-visible img {
+  filter: drop-shadow(0 0 4px #00ffcc);
+}
+
+.admin-login-card button:hover,
+.project-form button:hover,
+.admin-tabs button:hover,
+.admin-header button:hover,
+.admin-list button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.admin-login-card .link-button {
+  display: block;
+  margin: 10px 0 0 auto;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  color: #00e4bc;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.admin-login-card .link-button:hover,
+.admin-login-card .link-button:focus-visible {
+  background: transparent;
+  color: #82ffe5;
+  filter: none;
+  outline: none;
+  text-decoration-thickness: 2px;
+}
+
+.admin-login-card a,
+.admin-header a,
+.message-card a,
+.back-link {
+  color: #7bf3d0;
+}
+
+.admin-login-card > .back-link {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+  margin: 22px auto 0;
+  font-size: 0.95rem;
+}
+
+.admin-error {
+  color: #ff9fa4;
+  margin-top: 16px;
+}
+
+.admin-info {
+  color: #c1f6dd;
+  margin-top: 16px;
+  font-size: 0.95rem;
+}
+
+.admin-success {
+  color: #8ff7c5;
+  margin-top: 16px;
+}
+
+.login-actions {
+  display: grid;
+  margin-top: 26px;
+}
+
+.login-actions .primary-button {
+  width: 100%;
+  margin: 0;
+}
+
+.admin-dashboard {
+  max-width: 1120px;
+}
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.admin-header > div:last-child {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.admin-secondary {
+  background: transparent !important;
+  color: #c8ffef !important;
+  border: 1px solid rgba(0, 255, 204, 0.4) !important;
+}
+
+.admin-danger {
+  background: #7c2424 !important;
+  color: white !important;
+  margin-left: 8px;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: 10px;
+  margin: 30px 0;
+  border-bottom: 1px solid #283330;
+}
+
+.admin-tabs button {
+  margin: 0;
+  background: transparent;
+  color: #aeb8b6;
+  border-radius: 8px 8px 0 0;
+}
+
+.admin-tabs button.active {
+  color: #00ffcc;
+  border-bottom: 2px solid #00ffcc;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.9fr) minmax(340px, 1.1fr);
+  gap: 24px;
+}
+
+.project-form,
+.admin-list,
+.messages-panel {
+  padding: 24px;
+  border: 1px solid rgba(0, 255, 204, 0.16);
+  border-radius: 18px;
+  background: #121515;
+}
+
+.project-form h2,
+.admin-list h2,
+.messages-panel h2 {
+  margin-top: 0;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.admin-project {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid #293330;
+}
+
+.admin-project h3 {
+  margin: 0;
+}
+
+.admin-project p {
+  margin-bottom: 0;
+}
+
+.admin-project button {
+  margin-top: 0;
+}
+
+.message-card {
+  padding: 18px 0;
+  border-bottom: 1px solid #293330;
+}
+
+.message-card header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.message-card span {
+  color: #aeb8b6;
+  font-size: 0.85rem;
+}
+
+.message-card p {
+  white-space: pre-wrap;
+}
+
+@media (max-width: 760px) {
+  .admin-shell {
+    padding: 28px 14px;
+  }
+
+  .admin-header,
+  .admin-project {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .admin-grid,
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-header > div:last-child {
+    flex-wrap: wrap;
+  }
+
+  .message-card header {
+    flex-direction: column;
+  }
+}
+
+/* Admin workspace */
+.admin-workspace-shell {
+  display: block;
+  padding: 18px;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at 0 0, rgba(0, 228, 188, 0.08), transparent 32%), #080c0c;
+}
+
+.admin-workspace,
+.admin-workspace * {
+  box-sizing: border-box;
+}
+
+.admin-workspace {
+  width: min(1360px, 100%);
+  min-height: calc(100vh - 36px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 232px minmax(0, 1fr);
+  overflow: hidden;
+  border: 1px solid rgba(113, 170, 158, 0.16);
+  border-radius: 18px;
+  background: #0b1111;
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.24);
+  transition: grid-template-columns 0.25s ease;
+}
+
+.admin-workspace.drawer-closed {
+  grid-template-columns: 0 minmax(0, 1fr);
+}
+
+.dashboard-drawer {
+  min-width: 232px;
+  padding: 20px 12px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(0, 255, 204, 0.14);
+  background: #0d1515;
+  transition: opacity 0.2s ease;
+}
+
+.drawer-closed .dashboard-drawer {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.drawer-brand,
+.workspace-header,
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.drawer-brand {
+  padding: 5px 10px 20px;
+}
+
+.dashboard-drawer nav {
+  display: grid;
+  gap: 5px;
+}
+
+.dashboard-drawer button,
+.drawer-close,
+.drawer-toggle {
+  margin: 0;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.dashboard-drawer nav button {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: transparent;
+  color: #9cadab;
+  font-size: 0.9rem;
+  font-weight: 550;
+  text-align: left;
+}
+
+.dashboard-drawer nav button:hover,
+.dashboard-drawer nav button.active {
+  background: rgba(0, 228, 188, 0.09);
+  color: #78e6cf;
+}
+
+.drawer-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: transparent;
+  color: #00e4bc;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.drawer-footer {
+  display: grid;
+  gap: 14px;
+  margin-top: auto;
+  padding: 20px 8px 4px;
+  border-top: 1px solid rgba(0, 255, 204, 0.12);
+}
+
+.drawer-footer a {
+  color: #75f1d5;
+  font-size: 0.92rem;
+}
+
+.dashboard-drawer .drawer-signout {
+  padding: 10px 12px;
+  border: 1px solid rgba(0, 255, 204, 0.35);
+  border-radius: 10px;
+  background: transparent;
+  color: #d7fff4;
+  text-align: left;
+}
+
+.dashboard-main {
+  min-width: 0;
+  padding: 34px clamp(24px, 4vw, 56px) 48px;
+}
+
+.drawer-toggle {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  padding: 8px;
+  border-radius: 10px;
+  background: rgba(0, 228, 188, 0.1);
+}
+
+.drawer-toggle img {
+  width: 22px;
+  height: 22px;
+}
+
+.workspace-header {
+  margin: 4px 0 28px;
+}
+
+.workspace-header h1 {
+  margin: 8px 0 5px;
+  color: #f0f6f5;
+  font-size: clamp(1.65rem, 2.6vw, 2.2rem);
+  font-weight: 650;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+}
+
+.workspace-header p {
+  margin: 0;
+  color: #80918f;
+  font-size: 0.88rem;
+}
+
+.workspace-count {
+  padding: 7px 11px;
+  border: 1px solid rgba(112, 208, 186, 0.2);
+  border-radius: 999px;
+  color: #9ecfc3;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.workspace-notice {
+  margin: -16px 0 22px;
+}
+
+.projects-list,
+.editor-panel,
+.dashboard-main .messages-panel {
+  max-width: 980px;
+  padding: clamp(20px, 3vw, 28px);
+  border-color: rgba(118, 199, 182, 0.16);
+  border-radius: 14px;
+  background: #101818;
+}
+
+.section-heading {
+  margin-bottom: 20px;
+}
+
+.section-heading h2 {
+  margin: 5px 0 0;
+  color: #edf5f3;
+  font-size: 1.25rem;
+  font-weight: 630;
+  letter-spacing: -0.02em;
+}
+
+.section-heading > button,
+.empty-state button,
+.editor-panel .form-actions > button {
+  margin: 0;
+  padding: 11px 15px;
+}
+
+.projects-list .admin-project {
+  align-items: center;
+  padding: 16px 0;
+}
+
+.project-tech {
+  display: block;
+  margin-top: 7px;
+  color: #70c8b5;
+  font-size: 0.8rem;
+}
+
+.project-actions {
+  display: flex;
+  flex-shrink: 0;
+  gap: 8px;
+}
+
+.project-actions button {
+  margin: 0;
+  padding: 9px 12px;
+  font-size: 0.9rem;
+}
+
+.admin-danger {
+  margin-left: 0;
+}
+
+.editor-panel {
+  width: min(720px, 100%);
+}
+
+.editor-panel .form-actions {
+  margin-top: 24px;
+}
+
+.skills-editor {
+  min-height: 230px !important;
+}
+
+.empty-state {
+  padding: 38px 14px;
+  text-align: center;
+}
+
+.empty-state h3 {
+  margin: 0 0 8px;
+}
+
+.empty-state p {
+  max-width: 520px;
+  margin: 0 auto 20px;
+  color: #9eb0ae;
+  line-height: 1.6;
+}
+
+.dashboard-main .messages-panel {
+  width: min(800px, 100%);
+}
+
+.dashboard-main .project-form label {
+  gap: 7px;
+  margin-top: 17px;
+  color: #cfddda;
+  font-size: 0.87rem;
+  font-weight: 600;
+}
+
+.dashboard-main .project-form label small {
+  color: #7d908c;
+  font-size: 0.76rem;
+  font-weight: 450;
+}
+
+.dashboard-main .project-form input,
+.dashboard-main .project-form textarea {
+  padding: 11px 13px;
+  border-color: rgba(115, 192, 176, 0.22);
+  border-radius: 9px;
+  background: #0b1111;
+  color: #e9f1ef;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.dashboard-main .project-form .media-input {
+  padding: 9px;
+  color: #aac0bc;
+  cursor: pointer;
+}
+
+.dashboard-main .project-form .media-input::file-selector-button {
+  margin-right: 10px;
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: rgba(0, 228, 188, 0.14);
+  color: #8df0d8;
+  font: inherit;
+  cursor: pointer;
+}
+
+.dashboard-main .project-form textarea {
+  min-height: 96px;
+}
+
+.dashboard-main .project-form input:focus,
+.dashboard-main .project-form textarea:focus {
+  border-color: #38c9ac;
+  box-shadow: 0 0 0 3px rgba(56, 201, 172, 0.12);
+}
+
+.dashboard-main .admin-project h3,
+.dashboard-main .message-card strong {
+  color: #e9f2f0;
+  font-size: 0.98rem;
+  font-weight: 620;
+}
+
+.dashboard-main .admin-project p,
+.dashboard-main .message-card p {
+  color: #94a5a2;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.dashboard-main button {
+  font-size: 0.88rem;
+}
+
+@media (max-width: 760px) {
+  .admin-workspace-shell {
+    padding: 12px;
+  }
+
+  .admin-workspace {
+    min-height: calc(100vh - 24px);
+    border-radius: 16px;
+  }
+
+  .dashboard-main {
+    padding: 24px 18px;
+  }
+
+  .workspace-header {
+    align-items: flex-start;
+    margin-bottom: 24px;
+  }
+
+  .workspace-count {
+    display: none;
+  }
+
+  .projects-list .admin-project {
+    align-items: flex-start;
+  }
+
+  .project-actions {
+    width: 100%;
+  }
+}

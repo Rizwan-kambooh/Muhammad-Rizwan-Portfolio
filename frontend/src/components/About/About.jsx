@@ -1,6 +1,20 @@
 import "./About.css";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { doc, onSnapshot } from "firebase/firestore";
+import { db } from "../../config/firebase";
 const About = () => {
+  const [content, setContent] = useState(null);
+
+  useEffect(() => {
+    return onSnapshot(doc(db, "siteContent", "about"), (snapshot) => {
+      if (snapshot.exists()) setContent(snapshot.data());
+    });
+  }, []);
+
+  const highlights = content?.highlights?.split("\n").map((item) => item.trim()).filter(Boolean);
+  const overview = content?.overview?.split("\n").map((item) => item.trim()).filter(Boolean);
+
   return (
     <section id="about" className="about">
 
@@ -17,10 +31,10 @@ const About = () => {
           <span className="section-tag">About Me</span>
 
           <h2>
-            Building <span>Reliable Digital Experiences</span> with Purpose & Precision
+            {content?.heading || <>Building <span>Reliable Digital Experiences</span> with Purpose & Precision</>}
           </h2>
 
-          <p>
+          {content?.summary ? <p>{content.summary}</p> : <><p>
             I am <span>Muhammad Rizwan</span>, a Computer Science graduate focused on
             creating modern web and mobile applications using the <b>MERN stack</b> and
             <b> React Native</b>.
@@ -34,13 +48,10 @@ const About = () => {
           <p>
             I enjoy turning ideas into polished products through clean UI systems, API integration,
             and scalable full-stack development with technologies like <b>React, Node.js, Firebase, and SQL</b>.
-          </p>
+          </p></>}
 
           <div className="about-highlights">
-            <div>Frontend & Full-Stack Development</div>
-            <div>React Native Mobile Applications</div>
-            <div>API Integration & Database-Driven Solutions</div>
-            <div>Performance-Focused, User-Centered Design</div>
+            {(highlights?.length ? highlights : ["Frontend & Full-Stack Development", "React Native Mobile Applications", "API Integration & Database-Driven Solutions", "Performance-Focused, User-Centered Design"]).map((item) => <div key={item}>{item}</div>)}
           </div>
 
           {/* STATS */}
@@ -71,11 +82,10 @@ const About = () => {
 
           <div className="about-card">
             <h3>Quick Overview</h3>
-            <p><b>Education:</b> BS Computer Science</p>
-            <p><b>University:</b> University of South Asia, Lahore</p>
-            <p><b>Experience:</b> React Native Intern at Premlinx</p>
-            <p><b>Core Skills:</b> React, Node.js, Firebase, SQL</p>
-            <p><b>Availability:</b> Open to freelance & full-time roles</p>
+            {(overview?.length ? overview : ["Education: BS Computer Science", "University: University of South Asia, Lahore", "Experience: React Native Intern at Premlinx", "Core Skills: React, Node.js, Firebase, SQL", "Availability: Open to freelance & full-time roles"]).map((item) => {
+              const [label, ...value] = item.split(":");
+              return <p key={item}><b>{label}:</b>{value.join(":")}</p>;
+            })}
           </div>
         </motion.div>
 

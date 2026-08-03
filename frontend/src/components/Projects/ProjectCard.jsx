@@ -4,16 +4,22 @@ import { motion, AnimatePresence } from "framer-motion";
 const ProjectCard = ({ project, index }) => {
   const [current, setCurrent] = useState(0);
   const [open, setOpen] = useState(false);
+  const images = project.images?.filter(Boolean) || [];
+  const hasImages = images.length > 0;
+  const isVideo = (url) => /\.(mp4|webm|ogg|mov|m4v)(?:$|[?#])/i.test(url);
+  const renderMedia = (url, className) => isVideo(url)
+    ? <video className={className} src={url} controls playsInline />
+    : <img className={className} src={url} alt={project.title} />;
 
   const nextSlide = () => {
     setCurrent((prev) =>
-      prev === project.images.length - 1 ? 0 : prev + 1
+      prev === images.length - 1 ? 0 : prev + 1
     );
   };
 
   const prevSlide = () => {
     setCurrent((prev) =>
-      prev === 0 ? project.images.length - 1 : prev - 1
+      prev === 0 ? images.length - 1 : prev - 1
     );
   };
 
@@ -38,7 +44,7 @@ const ProjectCard = ({ project, index }) => {
         transition={{ delay: index * 0.2 }}
       >
         <div className="project-image">
-          <img src={project.images[0]} alt="project" />
+          {hasImages ? renderMedia(images[0]) : <div className="project-image-placeholder">Project preview</div>}
 
           <div className="overlay">
             <h3>{project.title}</h3>
@@ -76,14 +82,12 @@ const ProjectCard = ({ project, index }) => {
 
               {/* IMAGE */}
               <div className="modal-image">
-                <img src={project.images[current]} alt="project" />
+                {hasImages ? renderMedia(images[current]) : <div className="project-image-placeholder">Project preview</div>}
 
-                <button className="slider-btn left" onClick={prevSlide}>
-                  ‹
-                </button>
-                <button className="slider-btn right" onClick={nextSlide}>
-                  ›
-                </button>
+                {images.length > 1 && <>
+                  <button className="slider-btn left" onClick={prevSlide}>‹</button>
+                  <button className="slider-btn right" onClick={nextSlide}>›</button>
+                </>}
               </div>
 
               {/* INFO */}
@@ -98,8 +102,8 @@ const ProjectCard = ({ project, index }) => {
                 </div>
 
                 <div className="project-links">
-                  <a href={project.live} target="_blank" rel="noreferrer">Live</a>
-                  <a href={project.github} target="_blank" rel="noreferrer">GitHub</a>
+                  {project.live && project.live !== "#" && <a href={project.live} target="_blank" rel="noreferrer">Live</a>}
+                  {project.github && project.github !== "#" && <a href={project.github} target="_blank" rel="noreferrer">GitHub</a>}
                 </div>
               </div>
 

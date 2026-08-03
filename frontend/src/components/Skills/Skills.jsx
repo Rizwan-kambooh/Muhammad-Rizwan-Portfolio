@@ -1,5 +1,8 @@
 import "./Skills.css";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { doc, onSnapshot } from "firebase/firestore";
+import { db } from "../../config/firebase";
 
 const skillsData = [
   {
@@ -21,6 +24,22 @@ const skillsData = [
 ];
 
 const Skills = () => {
+  const [categories, setCategories] = useState(skillsData);
+
+  useEffect(() => {
+    return onSnapshot(doc(db, "siteContent", "skills"), (snapshot) => {
+    const savedCategories = snapshot.data()?.categories;
+    if (!savedCategories) return;
+
+    const parsed = savedCategories.split("\n").map((line) => {
+      const [title, ...skills] = line.split(":");
+      return { title: title?.trim(), skills: skills.join(":").split(",").map((skill) => skill.trim()).filter(Boolean) };
+    }).filter((category) => category.title && category.skills.length);
+
+      if (parsed.length) setCategories(parsed);
+    }, () => setCategories(skillsData));
+  }, []);
+
   return (
     <section id="skills" className="skills">
 
@@ -42,7 +61,7 @@ const Skills = () => {
 
         <div className="skills-grid">
 
-          {skillsData.map((category, index) => (
+          {categories.map((category, index) => (
             <motion.div
               className="skill-card"
               key={index}
