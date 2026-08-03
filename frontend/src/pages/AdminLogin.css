@@ -180,7 +180,35 @@
   font: inherit;
   font-weight: 700;
   cursor: pointer;
-  transition: transform 0.18s ease, filter 0.18s ease;
+  transition: transform 0.18s ease, filter 0.18s ease, box-shadow 0.18s ease;
+}
+
+.admin-login-card button:hover,
+.project-form button:hover,
+.admin-tabs button:hover,
+.admin-header button:hover,
+.admin-list button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.admin-login-card button:active,
+.project-form button:active,
+.admin-tabs button:active,
+.admin-header button:active,
+.admin-list button:active {
+  transform: translateY(0) scale(0.98);
+  filter: brightness(0.95);
+}
+
+.admin-login-card button:disabled,
+.project-form button:disabled,
+.admin-tabs button:disabled,
+.admin-header button:disabled,
+.admin-list button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  filter: brightness(0.9);
 }
 
 /* Keep the visibility control inside the password field, independent of form buttons. */
@@ -243,6 +271,12 @@
   filter: none;
   outline: none;
   text-decoration-thickness: 2px;
+}
+
+.admin-login-card .link-button:disabled {
+  color: rgba(123, 243, 208, 0.65);
+  cursor: not-allowed;
+  text-decoration: none;
 }
 
 .admin-login-card a,
@@ -668,6 +702,17 @@
 
 .editor-panel .form-actions {
   margin-top: 24px;
+}
+
+.editor-panel .form-actions > button[disabled] {
+  cursor: progress;
+}
+
+.editor-panel .editor-status,
+.editor-panel .saving-indicator {
+  margin-top: 14px;
+  color: #8bf3d0;
+  font-size: 0.95rem;
 }
 
 .skills-editor {
