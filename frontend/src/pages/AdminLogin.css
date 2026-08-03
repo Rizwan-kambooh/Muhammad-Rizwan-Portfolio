@@ -811,32 +811,100 @@
 
 @media (max-width: 760px) {
   .admin-workspace-shell {
-    padding: 12px;
+    padding: 8px;
   }
 
   .admin-workspace {
+    display: block;
+    position: relative;
     min-height: calc(100vh - 24px);
     border-radius: 16px;
+    overflow: visible;
   }
 
   .dashboard-main {
-    padding: 24px 18px;
+    padding: 18px 14px 28px;
+  }
+
+  .dashboard-drawer {
+    position: fixed;
+    z-index: 50;
+    top: 8px;
+    bottom: 8px;
+    left: 8px;
+    width: min(290px, calc(100vw - 16px));
+    min-width: 0;
+    padding: 18px 10px;
+    border: 1px solid rgba(0, 255, 204, 0.22);
+    border-radius: 14px;
+    box-shadow: 18px 0 42px rgba(0, 0, 0, 0.48);
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform 0.25s ease, opacity 0.2s ease;
+  }
+
+  .drawer-closed .dashboard-drawer {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(calc(-100% - 12px));
+  }
+
+  .drawer-toggle {
+    margin-bottom: 16px;
   }
 
   .workspace-header {
     align-items: flex-start;
+    gap: 10px;
     margin-bottom: 24px;
+  }
+
+  .workspace-header h1 {
+    font-size: 1.7rem;
+  }
+
+  .workspace-header p {
+    overflow-wrap: anywhere;
   }
 
   .workspace-count {
     display: none;
   }
 
+  .projects-list,
+  .editor-panel,
+  .dashboard-main .messages-panel {
+    padding: 18px 14px;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .section-heading > button {
+    flex: 0 0 auto;
+    padding: 10px 11px;
+  }
+
   .projects-list .admin-project {
     align-items: flex-start;
+    gap: 14px;
+    padding: 18px 0;
   }
 
   .project-actions {
     width: 100%;
+    flex-wrap: wrap;
   }
+
+  .project-actions button { flex: 1 1 110px; }
+
+  .editor-panel .form-actions { flex-wrap: wrap; }
+
+  .editor-panel .form-actions > button { flex: 1 1 150px; }
+
+  .dashboard-main .project-form .media-input { font-size: 0.8rem; }
+
+  .message-card { overflow-wrap: anywhere; }
 }
