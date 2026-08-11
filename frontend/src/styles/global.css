@@ -1,18 +1,192 @@
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #0f0f0f;
-  color: white;
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-y: auto;
+/* ============================================================
+   THEME TOKENS
+   The portfolio defaults to LIGHT mode. Dark mode mirrors the
+   previous all-dark design. Every component consumes these
+   variables, so theming stays in one place.
+   ============================================================ */
+
+:root {
+  color-scheme: light;
+
+  /* Surfaces */
+  --bg: #f6faf9;
+  --bg-alt: #eef4f2;
+  --surface: #ffffff;
+  --surface-soft: #f2f7f5;
+  --surface-strong: #e7efec;
+
+  /* Text */
+  --text: #14211f;
+  --text-strong: #0c1715;
+  --text-muted: #5f736f;
+  --text-faint: #7d918d;
+  --text-on-accent: #06201a;
+
+  /* Accent (teal) */
+  --accent: #00b894;
+  --accent-strong: #00997a;
+  --accent-soft: rgba(0, 184, 148, 0.1);
+  --accent-border: rgba(0, 184, 148, 0.3);
+  --accent-glow: rgba(0, 184, 148, 0.25);
+
+  /* Lines & shadows */
+  --border: rgba(20, 45, 40, 0.12);
+  --border-strong: rgba(20, 45, 40, 0.22);
+  --shadow: 0 10px 30px rgba(15, 40, 35, 0.1);
+
+  /* Navbar */
+  --nav-bg: rgba(255, 255, 255, 0.75);
+  --nav-border: rgba(0, 160, 130, 0.2);
+  --nav-link: #42524f;
+  --nav-link-hover: #00997a;
+
+  /* Forms */
+  --input-bg: #ffffff;
+  --input-text: var(--text);
+
+  /* Project media backdrops */
+  --media-bg: #dfe9e6;
+  --media-alt: #e5efec;
+
+  /* Overlays */
+  --overlay: rgba(4, 12, 10, 0.6);
+  --drawer-bg: #f8fbfa;
+  --drawer-border: rgba(0, 160, 130, 0.22);
+  --drawer-link: #31413e;
+  --drawer-link-border: rgba(20, 45, 40, 0.1);
+
+  /* Admin dashboard */
+  --admin-bg: #eef4f2;
+  --admin-bg-glow-1: rgba(0, 184, 148, 0.1);
+  --admin-bg-glow-2: rgba(0, 184, 148, 0.06);
+  --admin-workspace-bg: #e8f0ee;
+  --admin-workspace-surface: #ffffff;
+  --admin-login-bg: linear-gradient(180deg, #ffffff, #f2f8f6);
+  --admin-login-glow: rgba(0, 184, 148, 0.14);
+  --admin-panel-bg: #ffffff;
+  --admin-drawer-bg: #f7faf9;
+  --admin-border: rgba(0, 160, 130, 0.2);
+  --admin-border-strong: rgba(0, 160, 130, 0.42);
+  --admin-text: #14211f;
+  --admin-text-muted: #5f736f;
+  --admin-text-faint: #7d918d;
+  --admin-text-strong: #0c1715;
+  --admin-tag: #00997a;
+  --admin-label: #1f332f;
+  --admin-input-bg: #ffffff;
+  --admin-input-text: #14211f;
+  --admin-divider: rgba(20, 45, 40, 0.12);
+  --admin-hover-bg: rgba(0, 184, 148, 0.09);
+  --admin-hover-text: #00997a;
+  --admin-accent-link: #00997a;
+  --admin-error: #c0392b;
+  --admin-success: #0d9f76;
+
+  --transition-theme: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Surfaces */
+  --bg: #0f0f0f;
+  --bg-alt: #111;
+  --surface: #161616;
+  --surface-soft: rgba(255, 255, 255, 0.04);
+  --surface-strong: #1b1b1b;
+
+  /* Text */
+  --text: #ffffff;
+  --text-strong: #ffffff;
+  --text-muted: #aaa;
+  --text-faint: #888;
+  --text-on-accent: #06201a;
+
+  /* Accent (teal) */
+  --accent: #00ffcc;
+  --accent-strong: #00d6ae;
+  --accent-soft: rgba(0, 255, 204, 0.1);
+  --accent-border: rgba(0, 255, 204, 0.25);
+  --accent-glow: rgba(0, 255, 204, 0.25);
+
+  /* Lines & shadows */
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.22);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+
+  /* Navbar */
+  --nav-bg: rgba(15, 15, 15, 0.4);
+  --nav-border: rgba(0, 255, 204, 0.15);
+  --nav-link: #bbb;
+  --nav-link-hover: #00ffcc;
+
+  /* Forms */
+  --input-bg: rgba(255, 255, 255, 0.05);
+  --input-text: #ffffff;
+
+  /* Project media backdrops */
+  --media-bg: #080d0d;
+  --media-alt: #000;
+
+  /* Overlays */
+  --overlay: rgba(2, 9, 9, 0.82);
+  --drawer-bg: #121716;
+  --drawer-border: rgba(0, 255, 204, 0.25);
+  --drawer-link: #d9d9d9;
+  --drawer-link-border: rgba(255, 255, 255, 0.08);
+
+  /* Admin dashboard */
+  --admin-bg: #060909;
+  --admin-bg-glow-1: rgba(0, 255, 204, 0.12);
+  --admin-bg-glow-2: rgba(0, 255, 204, 0.08);
+  --admin-workspace-bg: #080c0c;
+  --admin-workspace-surface: #101818;
+  --admin-login-bg: linear-gradient(180deg, rgba(12, 16, 16, 0.98), rgba(6, 9, 9, 0.88));
+  --admin-login-glow: rgba(0, 255, 204, 0.18);
+  --admin-panel-bg: #121515;
+  --admin-drawer-bg: #0d1515;
+  --admin-border: rgba(113, 170, 158, 0.16);
+  --admin-border-strong: rgba(0, 255, 204, 0.24);
+  --admin-text: #eef2f2;
+  --admin-text-muted: #a8b8b6;
+  --admin-text-faint: #80918f;
+  --admin-text-strong: #f0f6f5;
+  --admin-tag: #74f5d7;
+  --admin-label: #e0f7ef;
+  --admin-input-bg: rgba(10, 15, 15, 0.92);
+  --admin-input-text: #f7fbfb;
+  --admin-divider: #283330;
+  --admin-hover-bg: rgba(0, 228, 188, 0.09);
+  --admin-hover-text: #78e6cf;
+  --admin-accent-link: #7bf3d0;
+  --admin-error: #ff9fa4;
+  --admin-success: #8ff7c5;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: auto;
+  transition: var(--transition-theme);
 }
 
 .section {

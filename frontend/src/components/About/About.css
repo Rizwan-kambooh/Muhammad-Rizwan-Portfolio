@@ -1,6 +1,7 @@
 .about {
   padding: 80px 20px;
-  background: #111;
+  background: var(--bg-alt);
+  transition: var(--transition-theme);
 }
 
 .about-container {
@@ -19,7 +20,7 @@
 
 /* SMALL TAG */
 .section-tag {
-  color: #00ffcc;
+  color: var(--accent);
   font-size: 0.9rem;
   letter-spacing: 1px;
 }
@@ -28,22 +29,22 @@
 .about-left h2 {
   font-size: 2.5rem;
   margin: 15px 0;
-  color: white;
+  color: var(--text);
 }
 
 .about-left h2 span {
-  color: #00ffcc;
+  color: var(--accent);
 }
 
 /* TEXT */
 .about-left p {
-  color: #bbb;
+  color: var(--text-muted);
   line-height: 1.8;
   margin-bottom: 15px;
 }
 
 .about-left span {
-  color: #00ffcc;
+  color: var(--accent);
 }
 
 .about-highlights {
@@ -54,10 +55,10 @@
 
 .about-highlights div {
   padding: 12px 14px;
-  border: 1px solid rgba(0, 255, 204, 0.18);
+  border: 1px solid var(--accent-border);
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.03);
-  color: #dffbf6;
+  background: var(--accent-soft);
+  color: var(--text);
 }
 
 /* STATS */
@@ -68,12 +69,12 @@
 }
 
 .about-stats h3 {
-  color: #00ffcc;
+  color: var(--accent);
   margin: 0;
 }
 
 .about-stats p {
-  color: #888;
+  color: var(--text-faint);
   font-size: 0.85rem;
 }
 
@@ -86,8 +87,8 @@
 
 /* CARD */
 .about-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(0,255,204,0.2);
+  background: var(--surface);
+  border: 1px solid var(--accent-border);
   backdrop-filter: blur(12px);
 
   padding: 30px;
@@ -96,16 +97,16 @@
   width: 100%;
   max-width: 350px;
 
-  box-shadow: 0 0 30px rgba(0,255,204,0.08);
+  box-shadow: var(--shadow);
 }
 
 .about-card h3 {
-  color: white;
+  color: var(--text);
   margin-bottom: 20px;
 }
 
 .about-card p {
-  color: #ccc;
+  color: var(--text-muted);
   margin-bottom: 10px;
 }
 

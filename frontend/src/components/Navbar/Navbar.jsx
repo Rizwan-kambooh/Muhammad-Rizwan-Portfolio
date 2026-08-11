@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { FiMenu, FiX } from "react-icons/fi";
+import { FiMenu, FiX, FiSun, FiMoon } from "react-icons/fi";
 import profileImage from "../../assets/profile.jpeg";
+import { useTheme } from "../../contexts/ThemeContext";
 import "./Navbar.css";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const closeOnEscape = (event) => {
@@ -59,6 +61,15 @@ const Navbar = () => {
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
+          <button
+            className="theme-toggle"
+            type="button"
+            onClick={toggleTheme}
+            aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
+            title={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
+          >
+            {theme === "light" ? <FiMoon /> : <FiSun />}
+          </button>
           <a href="/Muhammad_Rizwan_CV.pdf" download="Muhammad_Rizwan_CV.pdf" className="cv-nav-btn">
             Download CV
           </a>

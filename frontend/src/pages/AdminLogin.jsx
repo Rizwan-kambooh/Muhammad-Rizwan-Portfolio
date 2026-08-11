@@ -173,10 +173,31 @@ function AdminLogin() {
   </main>;
 }
 
+const DRAWER_STORAGE_KEY = "portfolio-admin-drawer";
+
+const getInitialDrawerState = () => {
+  try {
+    const saved = localStorage.getItem(DRAWER_STORAGE_KEY);
+    if (saved === "open" || saved === "closed") return saved === "open";
+  } catch {
+    // localStorage unavailable — fall back to viewport-based default.
+  }
+  return typeof window === "undefined" ? false : window.innerWidth >= 760;
+};
+
 function AdminDashboard({ user }) {
   const [tab, setTab] = useState("projects");
-  const [drawerOpen, setDrawerOpen] = useState(true);
+  const [drawerOpen, setDrawerOpen] = useState(getInitialDrawerState);
   const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(DRAWER_STORAGE_KEY, drawerOpen ? "open" : "closed");
+    } catch {
+      // Ignore storage errors — drawer state still applies for this session.
+    }
+  }, [drawerOpen]);
+
   const [messages, setMessages] = useState([]);
   const [messagesError, setMessagesError] = useState("");
   const [form, setForm] = useState(blankProject);
