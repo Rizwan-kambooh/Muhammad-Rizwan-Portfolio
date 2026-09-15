@@ -57,11 +57,11 @@ const About = () => {
           {/* STATS */}
           <div className="about-stats">
             <div>
-              <h3>3+</h3>
+              <h3>4+</h3>
               <p>Projects Built</p>
             </div>
             <div>
-              <h3>3 Months</h3>
+              <h3>1 year</h3>
               <p>Professional Experience</p>
             </div>
             <div>
@@ -82,7 +82,7 @@ const About = () => {
 
           <div className="about-card">
             <h3>Quick Overview</h3>
-            {(overview?.length ? overview : ["Education: BS Computer Science", "University: University of South Asia, Lahore", "Experience: React Native Intern at Premlinx", "Core Skills: React, Node.js, Firebase, SQL", "Availability: Open to freelance & full-time roles"]).map((item) => {
+            {(overview?.length ? overview : ["Education: BS Computer Science", "University: University of South Asia, Lahore", "Experience: Completed 4 months React Native Internship at Premlinx,  Associate Software Engineer at Zentix Stack, Canal View (Present)", "Core Skills: React, Node.js, Firebase, SQL", "Availability: Open to freelance & full-time roles"]).map((item) => {
               const [label, ...value] = item.split(":");
               return <p key={item}><b>{label}:</b>{value.join(":")}</p>;
             })}
