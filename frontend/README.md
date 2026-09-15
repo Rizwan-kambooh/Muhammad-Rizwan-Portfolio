@@ -2,6 +2,19 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Environment Variables
+
+Create a local `frontend/.env` file from `frontend/.env.example`.
+
+Required for admin project media uploads:
+
+```env
+REACT_APP_CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+REACT_APP_CLOUDINARY_UPLOAD_PRESET=your_unsigned_upload_preset
+```
+
+For Vercel, add the same variables in Project Settings → Environment Variables for Production, Preview, and Development, then redeploy the project. Create React App reads `REACT_APP_*` values at build time, so a redeploy is required after changing them.
+
 ## Available Scripts
 
 In the project directory, you can run:

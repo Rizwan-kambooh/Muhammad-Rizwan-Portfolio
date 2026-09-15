@@ -16,7 +16,7 @@ const CLOUDINARY_UPLOAD_PRESET = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
 
 function uploadMediaToCloudinary(file, onProgress) {
   if (!CLOUDINARY_CLOUD_NAME || !CLOUDINARY_UPLOAD_PRESET) {
-    return Promise.reject(new Error("Cloudinary is not configured. Add REACT_APP_CLOUDINARY_CLOUD_NAME and REACT_APP_CLOUDINARY_UPLOAD_PRESET to frontend/.env, then restart the app."));
+    return Promise.reject(new Error("Cloudinary is not configured. Add REACT_APP_CLOUDINARY_CLOUD_NAME and REACT_APP_CLOUDINARY_UPLOAD_PRESET to your local frontend/.env and to Vercel Environment Variables, then redeploy."));
   }
 
   return new Promise((resolve, reject) => {
