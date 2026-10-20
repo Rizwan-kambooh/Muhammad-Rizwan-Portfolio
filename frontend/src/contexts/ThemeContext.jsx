@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-const ThemeContext = createContext({ theme: "light", toggleTheme: () => {} });
+const ThemeContext = createContext({ theme: "dark", toggleTheme: () => {} });
 
 const STORAGE_KEY = "portfolio-theme";
 
@@ -12,10 +12,10 @@ const getInitialTheme = () => {
       return savedTheme;
     }
   } catch {
-    // localStorage unavailable — fall through to the light default.
+    // Storage may be unavailable in private browsing.
   }
-  document.documentElement.setAttribute("data-theme", "light");
-  return "light";
+  document.documentElement.setAttribute("data-theme", "dark");
+  return "dark";
 };
 
 export const ThemeProvider = ({ children }) => {
@@ -30,7 +30,7 @@ export const ThemeProvider = ({ children }) => {
     }
     const themeColorMeta = document.querySelector('meta[name="theme-color"]');
     if (themeColorMeta) {
-      themeColorMeta.setAttribute("content", theme === "dark" ? "#0f0f0f" : "#f6faf9");
+      themeColorMeta.setAttribute("content", theme === "dark" ? "#141513" : "#f2f1e9");
     }
   }, [theme]);
 

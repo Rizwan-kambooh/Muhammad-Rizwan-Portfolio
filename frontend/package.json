@@ -20,6 +20,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "postbuild": "node scripts/check-seo.cjs",
+    "check:seo": "node scripts/check-seo.cjs",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

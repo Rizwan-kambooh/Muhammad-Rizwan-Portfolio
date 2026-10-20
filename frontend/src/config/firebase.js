@@ -1,5 +1,4 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 // Firebase web configuration is public. Database access is protected by
@@ -14,7 +13,5 @@ const firebaseConfig = {
   measurementId: "G-754YGM75X0",
 };
 
-const app = initializeApp(firebaseConfig);
-
-export const auth = getAuth(app);
+export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);

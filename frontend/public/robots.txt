@@ -1,12 +1,5 @@
-# Allow all search engines to crawl the website
 User-agent: *
 Allow: /
-Disallow: /node_modules/
-Disallow: /*.json$
 
-# Sitemap location
-Sitemap: https://yourportfolio.com/sitemap.xml
-
-# Crawl-delay for search engine bots (in seconds)
-Crawl-delay: 1
+Sitemap: https://muhammad-rizwan-portfolio-xi.vercel.app/sitemap.xml
 

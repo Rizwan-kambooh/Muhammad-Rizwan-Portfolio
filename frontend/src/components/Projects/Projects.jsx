@@ -54,17 +54,17 @@ const Projects = () => {
   return (
     <section id="projects" className="projects">
 
-      <div className="projects-container">
+      <div className="projects-container page-width">
 
         {/* HEADER */}
         <motion.div
           className="projects-header"
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: .2 }}
         >
-          <span className="section-tag">Selected Work</span>
-          <h2>Projects That Reflect Practical Development</h2>
-          <p>I focus on building polished products that combine strong design, useful features, and reliable performance.</p>
+          <div><span className="section-tag">01 / Selected work</span><h2 className="section-title">Less talk.<br /><em>More building.</em></h2></div>
+          <p>A selection of web & mobile projects.<br />Built with purpose, shaped by the details.<span className="project-count mono">EXPLORE THE COLLECTION / {String(projects.length).padStart(2, "0")}</span></p>
         </motion.div>
 
         {/* GRID */}

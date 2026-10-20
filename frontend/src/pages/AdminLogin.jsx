@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { browserLocalPersistence, browserSessionPersistence, onAuthStateChanged, sendPasswordResetEmail, setPersistence, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
-import { auth, db } from "../config/firebase";
+import { db } from "../config/firebase";
+import { auth } from "../config/firebaseAuth";
 import eyeIcon from "../assets/eye.svg";
 import eyeOffIcon from "../assets/eye-off.svg";
 import menuIcon from "../assets/menu.svg";
