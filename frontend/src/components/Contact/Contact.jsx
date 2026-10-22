@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import "./Contact.css";
 import { useState } from "react";
-import { FiArrowUpRight, FiArrowRight, FiCopy, FiCheck, FiMapPin } from "react-icons/fi";
+import { FiArrowUpRight, FiArrowRight, FiCopy, FiCheck, FiMapPin, FiLinkedin } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../../config/firebase";
@@ -54,6 +54,7 @@ const Contact = () => {
             <div className="contact-email-row"><a href={"mailto:" + email}>{email}</a><button type="button" onClick={copyEmail} aria-label={copied ? "Email address copied" : "Copy email address"}>{copied ? <FiCheck /> : <FiCopy />}</button></div>
             <span className="copy-feedback" role="status">{copied ? "Email copied. Let’s connect!" : copyError ? "Please select the email address to copy it." : ""}</span>
             <div className="contact-details">
+              <a href="https://www.linkedin.com/in/muhammad-rizwan-283625226" target="_blank" rel="noopener noreferrer me"><FiLinkedin /><span>Professional profile<strong>Connect on LinkedIn</strong></span><FiArrowUpRight /></a>
               <a href="https://wa.me/923477976702" target="_blank" rel="noreferrer"><FaWhatsapp /><span>Prefer a quick conversation?<strong>Let’s chat on WhatsApp</strong></span><FiArrowUpRight /></a>
               <div><FiMapPin /><span>Based in<strong>Lahore, Pakistan</strong></span><span className="contact-globe" aria-hidden="true">◎</span></div>
             </div>
