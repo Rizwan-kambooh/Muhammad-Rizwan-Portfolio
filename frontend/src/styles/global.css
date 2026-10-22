@@ -54,6 +54,8 @@
   --transition-theme: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   --font-body: "Manrope", "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
+  /* Total fixed header height, including its bottom border. */
+  --navbar-height: 89px;
   --section-space: clamp(64px, 7vw, 96px);
   --bg: #f2f1e9;
   --bg-alt: #e9e8df;
@@ -238,7 +240,7 @@ button:disabled {
 }
 
 section[id] {
-  scroll-margin-top: 100px;
+  scroll-margin-top: var(--navbar-height);
 }
 
 .page-width {
@@ -395,6 +397,10 @@ section[id] {
 
 @media(max-width:700px) {
 
+  :root {
+    --navbar-height: 75px;
+  }
+
   .page-width {
     width: calc(100% - 40px);
   }
@@ -407,9 +413,6 @@ section[id] {
     display: none;
   }
 
-  section[id] {
-    scroll-margin-top: 85px;
-  }
 }
 
 @media(prefers-reduced-motion:reduce) {

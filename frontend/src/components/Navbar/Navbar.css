@@ -1,6 +1,7 @@
 .navbar {
   position: fixed;
   inset: 0 0 auto;
+  height: var(--navbar-height);
   z-index: 1000;
   background: var(--nav-bg);
   backdrop-filter: blur(18px);
@@ -12,7 +13,7 @@
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
   justify-content: space-between;
-  height: 88px;
+  height: 100%;
   gap: 25px;
 }
 
@@ -209,7 +210,6 @@
 
   .nav-container {
     grid-template-columns: minmax(0, 1fr) auto;
-    height: 74px;
     gap: 12px;
   }
 
